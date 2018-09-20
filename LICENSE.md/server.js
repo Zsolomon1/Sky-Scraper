@@ -43,7 +43,7 @@ app.get("/", function(req, res) {
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
-  axios.get("https://www.npr.org/sections/news/").then(function(response) {
+  axios.get("https://www.washingtonpost.com/politics/?utm_term=.b3302e527548").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
