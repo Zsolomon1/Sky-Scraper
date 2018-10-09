@@ -1,0 +1,66 @@
+<header class="jumbotron">
+    <h1>{{this.number}}: {{this.title}}</h1>
+</header>
+
+<div class="container">
+    <p>{{this.summary}}</p>
+    {{#each this.comments}}
+        <div class="card">
+            <div class="card-head">
+                <button class="btn x-btn" id="{{this.id}}"><i class="far fa-times-circle"></i></button>
+            </div>
+            <div class="card-body">
+                <p>{{this.comment}}</p>
+                <p class="comment-user-name">By {{this.name}}</p>
+            </div>
+        </div>
+    {{/each}}
+
+    <form id="{{this.id}}">
+        <div class="formgroup">
+            <label for="user-name">Name</label>
+            <input type="text" class="form-control" id="user-name" name="user-name" />
+        </div>
+        <div class="formgroup">
+            <label for="comment">Comment</label>
+            <textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn submit-btn">Submit</button>
+    </form>
+</div>
+
+<script>
+    $("form").submit(function(event) {
+        event.preventDefault();
+
+        let url = "/new-comment/" + event.target.id;
+        let data = {
+            name: $("#user-name").val(),
+            comment: $("#comment").val()
+        };
+        // console.log(this, url, data);
+        
+        $.post(url, data).then(function(response) {
+            window.location.reload(true);
+        });
+    });
+
+    $(".x-btn").click(function(event) {
+        event.preventDefault();
+        console.log(event);
+
+        let url = "/" + $(this).attr("id");
+        console.log(url);
+        // debugger;
+        // try currentTarget, also css z-index
+
+        // send to delete call
+        $.ajax({
+            method: "DELETE",
+            url: url
+        }).then(function(response) {
+            console.log(url, response);
+            window.location.reload(true);
+        })
+    })
+</script>

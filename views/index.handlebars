@@ -1,0 +1,23 @@
+<header class="jumbotron">
+    <h1>codeNewbie Fanpage</h1>
+</header>
+
+<div class="container">
+    {{#each episodes}}
+        <div class="card">
+            <div class="card-header">
+                <span class="episode-number">{{this.number}}</span>
+                <span class="episode-title">{{this.title}}</span>
+            </div>
+            <div class="card-body">
+                <p>{{this.summary}}</p>
+                <div>
+                    <a href="{{this.link}}" class="btn">Listen</a>
+
+                    {{!-- I would probably choose to do this with some variation of episode numbers if this were real, so that the resultant URL was intuitive to users, but there are lots of spaces that I just don't feel like taking out and then putting back in to query the database with, so object id it is. --}}
+                    <a href="{{this._id}}" class="btn">Comment</a>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
