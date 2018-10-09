@@ -1,11 +1,21 @@
-<div id="wrapper">
-  <nav>
-    <h1>News Scraper</h1>
-    <button id="scraper">Scrape new articles</button>
-    <button id="showArticles">Show scraped articles</button>
-  </nav>
-  <div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src='/images/tenor.gif'
-      width="64" height="64" /><br></div>
-  <div id="articles"></div>
-  <div id="notes"></div>
+<header class="jumbotron">
+    <h1>Scraper News</h1>
+</header>
+
+<div class="container">
+    {{#each episodes}}
+        <div class="card">
+            <div class="card-header">
+                <span class="episode-number">{{this.number}}</span>
+                <span class="episode-title">{{this.title}}</span>
+            </div>
+            <div class="card-body">
+                <p>{{this.summary}}</p>
+                <div>
+                    <a href="{{this.link}}" class="btn">Listen</a>
+                    <a href="{{this._id}}" class="btn">Comment</a>
+                </div>
+            </div>
+        </div>
+    {{/each}}
 </div>
